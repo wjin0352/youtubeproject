@@ -9,7 +9,8 @@ describe User do
     	lastname: 'Dough',
     	email: 'jenn@example.com',
     	username: 'jennuser',
-    	description: 'this is my page'
+    	description: 'this is my page',
+      password: 'abc12345'
     	)
     expect(user).to be_valid
   end
@@ -50,16 +51,20 @@ describe User do
       firstname: 'Joe', lastname: 'Dough',
       description: 'a description',
       email: 'joe@example.com',
-      username: 'joeuser' 
+      username: 'joeuser' ,
+      password: 'abc12345'
       )
     user = User.new(
       firstname: 'Jane', lastname: 'Dough', description: 'some description',
       username: 'janeuser',
       email: 'joe@example.com'
+
       )
     user.valid?
     expect(user.errors[:email]).to include("has already been taken")
   end
+
+
 
 end
 

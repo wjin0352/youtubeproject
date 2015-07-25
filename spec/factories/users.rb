@@ -3,8 +3,9 @@ FactoryGirl.define do
     firstname "MyString"
 	lastname "MyString"
 	username "MyString"
-	email "MyString"
+	email "test@example.com"
 	description "MyText"
+	password "abcd12345"
   end
 
 end
