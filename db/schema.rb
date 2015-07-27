@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725205742) do
+ActiveRecord::Schema.define(version: 20150727184407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
@@ -33,21 +41,28 @@ ActiveRecord::Schema.define(version: 20150725205742) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "subscriber_id"
+    t.integer  "video_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["subscriber_id"], name: "index_users_on_subscriber_id", using: :btree
+  add_index "users", ["video_id"], name: "index_users_on_video_id", using: :btree
 
   create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "type"
+    t.string   "video_type"
     t.string   "link_address"
     t.string   "file_name"
     t.integer  "likes"
     t.integer  "dislikes"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "comment_id"
   end
+
+  add_index "videos", ["comment_id"], name: "index_videos_on_comment_id", using: :btree
 
 end

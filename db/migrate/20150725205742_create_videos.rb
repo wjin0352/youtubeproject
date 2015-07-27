@@ -3,7 +3,7 @@ class CreateVideos < ActiveRecord::Migration
     create_table :videos do |t|
       t.string :title
       t.string :description
-      t.string :type
+      t.string :video_type
       t.string :link_address
       t.string :file_name
       t.integer :likes
