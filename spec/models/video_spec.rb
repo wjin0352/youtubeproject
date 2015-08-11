@@ -6,7 +6,7 @@ describe Video do
 			title: 'video1',
 			description: 'video 1 sample',
 			# video_type: 'mpg',
-			link_address: 'www.youtube.com/video1',
+			link_address: "https://www.youtube.com/watch?v=wz3kElLbEHE&list=PLGLfVvz_LVvSngZQwrhYXlPnJf1zYqghI&index=4",
 			file_name: 'video1',
 			likes: 1,
 			dislikes: 1
@@ -14,11 +14,11 @@ describe Video do
 		expect(video).to be_valid
 	end
 
-	it "is invalid without a title" do 
-		video = Video.new(title: nil)
-		video.valid?
-		expect(video.errors[:title]).to include("can't be blank")
-	end
+	# it "is invalid without a title" do 
+	# 	video = Video.new(title: nil)
+	# 	video.valid?
+	# 	expect(video.errors[:title]).to include("can't be blank")
+	# end
 
 	it "is invalid without a link_address" do 
 		video = Video.new(link_address: nil)
