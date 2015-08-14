@@ -239,6 +239,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
+  execjs
   factory_girl_rails
   faker
   figaro

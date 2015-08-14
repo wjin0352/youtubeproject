@@ -8,8 +8,6 @@ class Video < ActiveRecord::Base
   # use \A \z instead of \^ to avoid injection
   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*\z/i
  
-	validates :link_address, presence: true, format: YT_LINK_FORMAT
- 
 
   before_create -> do
   	uid = link_address.match(YT_LINK_FORMAT)
@@ -25,12 +23,14 @@ class Video < ActiveRecord::Base
     	get_additional_info
   	end
 	end
+
+  validates :link_address, presence: true, format: YT_LINK_FORMAT
 	
 	private
  
 	def get_additional_info
   	begin
-    	client = YouTubeIt::OAuth2Client.new(dev_key: 'API_key')
+    	client = YouTubeIt::OAuth2Client.new(dev_key: ENV['API_key'])
     	video = client.video_by(uid)
     	self.title = video.title
     	self.duration = parse_duration(video.duration)

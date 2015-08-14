@@ -31,6 +31,8 @@ gem 'autoprefixer-rails'
 gem 'youtube_it'
 gem 'figaro'
 
+gem 'execjs'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
